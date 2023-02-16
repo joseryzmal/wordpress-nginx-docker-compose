@@ -26,30 +26,34 @@ global $product;
 
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 $post_thumbnail_id = $product->get_image_id();
-$wrapper_classes   = apply_filters(
-	'woocommerce_single_product_image_gallery_classes',
-	array(
-		'woocommerce-product-gallery',
-		'woocommerce-product-gallery--' . ( $post_thumbnail_id ? 'with-images' : 'without-images' ),
-		'woocommerce-product-gallery--columns-' . absint( $columns ),
-		'images',
-	)
-);
 ?>
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<figure class="woocommerce-product-gallery__wrapper">
-		<?php
-		if ( $post_thumbnail_id ) {
-			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
-		} else {
-			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= '</div>';
-		}
+<div class="flex flex-col-reverse product-image-gallery" data-controller="tabs">
+  <div class="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+    <div class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
+      <?php do_action( 'woocommerce_product_thumbnails' ); ?>
+    </div>
+  </div>
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+  <div class="aspect-w-1 aspect-h-1 w-full">
+    <?php
+    $attachment_ids = $product->get_gallery_image_ids();
+    array_unshift($attachment_ids, $post_thumbnail_id);
 
-		do_action( 'woocommerce_product_thumbnails' );
-		?>
-	</figure>
+    foreach( $attachment_ids as $index => $attachment_id ):
+      $image_link = wp_get_attachment_url( $attachment_id );
+      $element_id = "product-image-{$attachment_id}";
+      $alt_text = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
+      $hidden_css = $index > 0 ? 'hidden' : '' ?>
+    <div id="<?php echo $element_id ?>"
+      data-tabs-target="tabpanel"
+      aria-labelledby="<?php echo $element_id ?>"
+      role="tabpanel"
+      tabindex="0"
+      class="<?php echo $hidden_css ?>">
+      <img src="<?php echo $image_link ?>" alt="<?php echo $alt_text ?>" class="h-full w-full object-cover object-center sm:rounded-lg zoomImg">
+    </div>
+    <?php
+    endforeach;
+    ?>
+  </div>
 </div>

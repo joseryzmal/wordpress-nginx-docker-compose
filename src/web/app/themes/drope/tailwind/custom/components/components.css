@@ -73,3 +73,7 @@ $(post-title-selector) {
 .collapsable-section.collapsed .icon.minus {
 	@apply hidden;
 }
+
+.product-image-gallery button.selected .ring-2 {
+  @apply ring-indigo-500;
+}

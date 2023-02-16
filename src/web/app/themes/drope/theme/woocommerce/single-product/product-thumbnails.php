@@ -26,8 +26,28 @@ global $product;
 
 $attachment_ids = $product->get_gallery_image_ids();
 
-if ( $attachment_ids && $product->get_image_id() ) {
-	foreach ( $attachment_ids as $attachment_id ) {
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', wc_get_gallery_image_html( $attachment_id ), $attachment_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
-	}
-}
+if ( $attachment_ids && $product->get_image_id() ):
+  array_unshift($attachment_ids, $product->get_image_id());
+	foreach ( $attachment_ids as $index => $attachment_id ):
+    $gallery_thumbnail = wc_get_image_size( 'woocommerce_thumbnail' );
+    $thumbnail_size    = apply_filters( 'woocommerce_gallery_thumbnail_size', array( $gallery_thumbnail['width'], $gallery_thumbnail['height'] ) );
+    $image_size        = apply_filters( 'woocommerce_gallery_image_size', $thumbnail_size );
+    $thumbnail_src     = wp_get_attachment_image_src( $attachment_id, $thumbnail_size );
+    $alt_text          = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
+    $element_id = "product-image-{$attachment_id}"; ?>
+<button class="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50 focus:ring-offset-4"
+  data-action="click->tabs#selectTab"
+  data-tabs-target="tab"
+  aria-controls="<?php echo $element_id ?>"
+  aria-selected="<?php echo $index == 0 ? 'true' : 'false' ?>"
+  role="tab"
+  type="button">
+  <span class="sr-only"><?php echo $alt_text ?></span>
+  <span class="absolute inset-0 overflow-hidden rounded-md">
+    <img src="<?php echo $thumbnail_src[0] ?>" alt="<?php echo $alt_text ?>" class="h-full w-full object-cover object-center">
+  </span>
+  <span class="ring-transparent pointer-events-none absolute inset-0 rounded-md ring-2 ring-offset-2" aria-hidden="true"></span>
+</button>
+<?php
+  endforeach;
+endif;

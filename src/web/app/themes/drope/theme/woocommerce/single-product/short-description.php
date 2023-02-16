@@ -28,6 +28,10 @@ if ( ! $short_description ) {
 }
 
 ?>
-<div class="woocommerce-product-details__short-description">
-	<?php echo $short_description; // WPCS: XSS ok. ?>
+<div class="mt-6">
+  <h3 class="sr-only">Description</h3>
+
+  <div class="space-y-6 text-base text-gray-700">
+    <p><?php echo $short_description; ?></p>
+  </div>
 </div>
