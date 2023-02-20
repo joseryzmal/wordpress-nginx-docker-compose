@@ -25,33 +25,47 @@ $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_j
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<form class="variations_form cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
+<form action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>"
+  method="post"
+  class="variations_form1 cart"
+  data-controller="variations"
+  data-variations-price-display-outlet=".mt-3"
+  data-variations-purchasable-text-value="Add to cart"
+  data-variations-sold-out-text-value="Out of stock"
+  data-variations-unavailable-text-value="Unavailable"
+  enctype='multipart/form-data'
+  data-variations-data-value="<?php echo $variations_attr; // WPCS: XSS ok. ?>"
+  data-product_id="<?php echo absint( $product->get_id() ); ?>"
+  data-product_variations="<?php #echo $variations_attr; // WPCS: XSS ok. ?>">
 	<?php do_action( 'woocommerce_before_variations_form' ); ?>
 
 	<?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
 		<p class="stock out-of-stock"><?php echo esc_html( apply_filters( 'woocommerce_out_of_stock_message', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ) ) ); ?></p>
 	<?php else : ?>
-		<table class="variations" cellspacing="0" role="presentation">
-			<tbody>
-				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
-					<tr>
-						<th class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></th>
-						<td class="value">
-							<?php
-								wc_dropdown_variation_attribute_options(
-									array(
-										'options'   => $options,
-										'attribute' => $attribute_name,
-										'product'   => $product,
-									)
-								);
-								echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
-							?>
-						</td>
-					</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>
+    <?php foreach ( $attributes as $attribute_name => $options ): ?>
+      <div class="mt-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-medium text-gray-900"><?php echo wc_attribute_label( $attribute_name ) ?></h2>
+          <?php /*<a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">See TEST chart</a>*/ ?>
+        </div>
+
+        <fieldset class="mt-2 variations" data-controller="attribute">
+          <legend class="sr-only">Choose a <?php echo wc_attribute_label( $attribute_name ) ?></legend>
+          <div class="grid grid-cols-5 gap-4 sm:grid-cols-10 lg:grid-cols-6">
+            <?php
+            drope_radio_variation_attribute_options(
+              array(
+                'options'   => $options,
+                'attribute' => $attribute_name,
+                'product'   => $product,
+              )
+            );
+            ?>
+          </div>
+        </fieldset>
+      </div>
+    <?php endforeach; ?>
+
 		<?php do_action( 'woocommerce_after_variations_table' ); ?>
 
 		<div class="single_variation_wrap">

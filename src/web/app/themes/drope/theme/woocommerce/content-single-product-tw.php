@@ -95,59 +95,7 @@ if ( post_password_required() ) {
 
         <?php wc_get_template( 'single-product/short-description.php' ); ?>
 
-        <form class="mt-6">
-          <!-- Colors -->
-          <div>
-            <h3 class="text-sm text-gray-600">Color</h3>
-
-            <fieldset class="mt-2">
-              <legend class="sr-only">Choose a color</legend>
-              <span class="flex items-center space-x-3">
-                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-700">
-                  <input type="radio" name="color-choice" value="Washed Black" class="sr-only" aria-labelledby="color-choice-0-label">
-                  <span id="color-choice-0-label" class="sr-only"> Washed Black </span>
-                  <span aria-hidden="true" class="h-8 w-8 bg-gray-700 border border-black border-opacity-10 rounded-full"></span>
-                </label>
-
-                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-400">
-                  <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-1-label">
-                  <span id="color-choice-1-label" class="sr-only"> White </span>
-                  <span aria-hidden="true" class="h-8 w-8 bg-white border border-black border-opacity-10 rounded-full"></span>
-                </label>
-
-                <!--
-                  Active and Checked: "ring ring-offset-1"
-                  Not Active and Checked: "ring-2"
-                -->
-                <label class="-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none ring-gray-500">
-                  <input type="radio" name="color-choice" value="Washed Gray" class="sr-only" aria-labelledby="color-choice-2-label">
-                  <span id="color-choice-2-label" class="sr-only"> Washed Gray </span>
-                  <span aria-hidden="true" class="h-8 w-8 bg-gray-500 border border-black border-opacity-10 rounded-full"></span>
-                </label>
-              </span>
-            </fieldset>
-          </div>
-
-          <div class="sm:flex-col1 mt-10 flex">
-            <button type="submit" class="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full">Add to bag</button>
-
-            <button type="button" class="ml-4 flex items-center justify-center rounded-md py-3 px-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500">
-              <!-- Heroicon name: outline/heart -->
-              <svg class="h-6 w-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
-              <span class="sr-only">Add to favorites</span>
-            </button>
-          </div>
-        </form>
+        <?php do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' ); ?>
 
         <section aria-labelledby="details-heading" class="mt-12">
           <h2 id="details-heading" class="sr-only">Additional details</h2>
@@ -157,8 +105,23 @@ if ( post_password_required() ) {
 
             <?php
             wc_get_template('shared/collapsable-section.php', array(
-              'heading' => 'Testing',
-              'content' => 'Lorem ipsum ye ye ye',
+              'heading' => 'Materials',
+              'content' => 'Lorem ipsum dolor sit amet',
+            ));
+
+            wc_get_template('shared/collapsable-section.php', array(
+              'heading' => 'Shipping & Returns',
+              'content' => 'Lorem ipsum dolor sit amet',
+            ));
+
+            wc_get_template('shared/collapsable-section.php', array(
+              'heading' => 'Dimensions',
+              'content' => 'Lorem ipsum dolor sit amet',
+            ));
+
+            wc_get_template('shared/collapsable-section.php', array(
+              'heading' => 'Care Instructions',
+              'content' => 'Lorem ipsum dolor sit amet',
             ));
             ?>
           </div>

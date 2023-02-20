@@ -14,10 +14,11 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 <script type="text/template" id="tmpl-variation-template">
-	<div class="woocommerce-variation-description">{{{ data.variation.variation_description }}}</div>
-	<div class="woocommerce-variation-price">{{{ data.variation.price_html }}}</div>
-	<div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
+  <div class="flex flex-col md:flex-row md:items-center gap-x-6">
+    <div class="text-3xl tracking-tight text-gray-900">{{{ data.variation.price_html }}}&nbsp;</div>
+    <div class="woocommerce-variation-availability">{{{ data.variation.availability_html }}}</div>
+  </div>
 </script>
 <script type="text/template" id="tmpl-unavailable-variation-template">
-	<p><?php esc_html_e( 'Sorry, this product is unavailable. Please choose a different combination.', 'woocommerce' ); ?></p>
+	<span class="text-red-600"><?php esc_html_e( 'Sorry, this product is unavailable. Please choose a different combination.', 'woocommerce' ); ?></span>
 </script>

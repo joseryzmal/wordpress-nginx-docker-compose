@@ -50,6 +50,7 @@
 	},
 	"prettier": "@wordpress/prettier-config",
 	"dependencies": {
-		"@hotwired/stimulus": "^3.2.1"
+		"@hotwired/stimulus": "^3.2.1",
+		"lodash": "^4.17.21"
 	}
 }

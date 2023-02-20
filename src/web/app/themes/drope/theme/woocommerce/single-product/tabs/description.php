@@ -24,4 +24,5 @@ $heading = apply_filters( 'woocommerce_product_description_heading', __( 'Descri
 wc_get_template('shared/collapsable-section.php', array(
   'heading' => esc_html( $heading ),
   'content' => get_the_content(),
+  'collapsed' => 'false'
 ));

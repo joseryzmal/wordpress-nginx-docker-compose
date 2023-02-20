@@ -1,4 +1,4 @@
-<div data-controller="collapsable-section">
+<div data-controller="collapsable-section" data-collapsable-section-collapsed-value="<?php echo $collapsed ?>">
   <h3>
     <button type="button"
       data-action="click->collapsable-section#toggle"

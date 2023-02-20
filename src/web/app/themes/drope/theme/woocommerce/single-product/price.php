@@ -22,7 +22,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<div class="mt-3">
+<div class="mt-3" data-controller="price-display">
   <h2 class="sr-only">Product information</h2>
-  <p class="text-3xl tracking-tight text-gray-900"><?php echo $product->get_price_html(); ?></p>
+  <div data-price-display-target="display">
+    <p class="text-3xl tracking-tight text-gray-900"><?php echo $product->get_price_html(); ?></p>
+  </div>
 </div>

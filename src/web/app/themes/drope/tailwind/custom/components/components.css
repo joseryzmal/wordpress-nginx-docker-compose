@@ -77,3 +77,35 @@ $(post-title-selector) {
 .product-image-gallery button.selected .ring-2 {
   @apply ring-indigo-500;
 }
+
+.test {
+  @apply border-2 border-dashed border-red-600;
+}
+
+.variant-option-radio ~ span {
+  @apply border border-transparent;
+}
+
+.variant-option-radio:focus ~ span {
+  @apply border-2 border-indigo-500;
+}
+
+.variant-option-radio:checked + label {
+  @apply ring-2 ring-indigo-500;
+}
+
+.single_add_to_cart_button {
+  @apply flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full;
+}
+
+.single_add_to_cart_button.disabled {
+  @apply bg-gray-100 text-gray-500 cursor-not-allowed focus:ring-gray-500;
+}
+
+form.cart .quantity {
+  @apply hidden;
+}
+
+.woocommerce-variation-add-to-cart {
+  @apply mt-10;
+}
