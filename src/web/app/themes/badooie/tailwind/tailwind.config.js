@@ -9,6 +9,8 @@ if ('editor' === process.env._TW_TARGET) {
 	typographyClassName = 'prose';
 }
 
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
 	presets: [
 		// Manage Tailwind Typography's configuration in a separate file.
@@ -21,7 +23,11 @@ module.exports = {
 	],
 	theme: {
 		// Extend the default Tailwind theme.
-		extend: {},
+		extend: {
+      fontFamily: {
+        'sans': ['Montserrat', ...defaultTheme.fontFamily.sans],
+      },
+    },
 	},
 	corePlugins: {
 		// Disable Preflight base styles in CSS targeting the editor.
@@ -37,8 +43,8 @@ module.exports = {
 		}),
 
 		// Uncomment below to add additional first-party Tailwind plugins.
-		// require( '@tailwindcss/forms' ),
-		// require( '@tailwindcss/aspect-ratio' ),
+		require( '@tailwindcss/forms' ),
+		require( '@tailwindcss/aspect-ratio' ),
 		// require( '@tailwindcss/line-clamp' ),
 		// require( '@tailwindcss/container-queries' ),
 	],
