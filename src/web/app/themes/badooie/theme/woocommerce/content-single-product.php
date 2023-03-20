@@ -32,7 +32,7 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-  <div class="test flex flex-col md:flex-row max-w-6xl mx-auto p-4 md:p-8 gap-y-4 md:gap-y-0 md:gap-x-10">
+  <div class="flex flex-col md:flex-row max-w-6xl mx-auto p-4 md:p-8 gap-y-4 md:gap-y-0 md:gap-x-10">
     <?php
     /**
      * Hook: woocommerce_before_single_product_summary.

@@ -318,9 +318,24 @@ if ( ! function_exists( 'drope_radio_variation_attribute_options' ) ) {
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 add_action( 'woocommerce_after_product_price', 'woocommerce_show_product_sale_flash', 15 );
 
-# move add to cart button
+# move add to cart button up
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 15 );
 
+# move tabs
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs',  10);
+add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs',  35);
+
 # remove plugin body class
 add_filter('disable_wvs_body_class', '__return_false');
+
+# remove reviews tab and panel
+add_filter( 'woocommerce_product_tabs', 'badooie_remove_reviews_tab', 98 );
+function badooie_remove_reviews_tab( $tabs ) {
+  unset( $tabs['reviews'] ); 			// Remove the reviews tab
+  return $tabs;
+}
+
+# remove tab panel header/title
+add_filter('woocommerce_product_description_heading', '__return_null');
+add_filter('woocommerce_product_additional_information_heading', '__return_null');

@@ -93,6 +93,38 @@ h1.entry-title {
 }
 
 /**
+ * TABS
+ */
+
+.entry-summary details .indicator {
+  @apply hidden h-6 w-6;
+}
+
+.entry-summary details h2 {
+  @apply text-gray-400;
+}
+
+.entry-summary details[open] h2 {
+  @apply text-indigo-400;
+}
+
+.entry-summary details .indicator.minus {
+  @apply hidden;
+}
+
+.entry-summary details[open] .indicator.minus {
+  @apply block;
+}
+
+.entry-summary details .indicator.plus {
+  @apply block;
+}
+
+.entry-summary details[open] .indicator.plus {
+  @apply hidden;
+}
+
+/**
  * VARIATION TYPE
  */
 
