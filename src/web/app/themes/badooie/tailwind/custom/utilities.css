@@ -6,3 +6,130 @@
  *
  * https://tailwindcss.com/docs/plugins#adding-utilities
  */
+.test {
+  @apply border border-red-600 border-dashed;
+}
+
+h1.entry-title {
+  @apply text-4xl mb-4 font-normal;
+}
+
+.product .woocommerce-product-gallery,
+.product .summary {
+  flex: 1 1 50%;
+}
+
+.product .woocommerce-product-gallery {
+  @apply relative;
+}
+
+.product .summary {
+  @apply max-w-md;
+}
+
+.product .price {
+  @apply text-xl;
+}
+
+.woocommerce .product span.price {
+  @apply font-semibold;
+}
+
+.woocommerce .product .price del {
+  @apply opacity-50 text-base font-normal;
+}
+
+.woocommerce .product .price ins {
+  @apply no-underline;
+}
+
+.onsale,
+.stock {
+  @apply bg-sky-200 text-xs py-1.5 px-3 rounded-full;
+}
+
+.stock.out-of-stock {
+  @apply bg-gray-200 inline-block;
+}
+
+.stock.available-on-backorder {
+  @apply bg-transparent p-0 mb-4;
+}
+
+.woocommerce-product-gallery .flex-control-thumbs {
+  @apply flex flex-row justify-between gap-x-2 mt-2;
+}
+
+.woocommerce-product-gallery .flex-control-thumbs li {
+  @apply flex-auto flex justify-center;
+}
+
+.woocommerce-product-gallery .flex-control-thumbs img {
+  @apply w-full cursor-pointer;
+}
+
+.woocommerce-product-gallery .woocommerce-product-gallery__trigger {
+  @apply absolute top-3 left-3 z-10;
+}
+
+.pswp__caption__center {
+  @apply text-center;
+}
+
+.woocommerce .product form.cart .button {
+  @apply block w-full rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
+}
+
+.woocommerce .product form.cart .button.disabled {
+  @apply opacity-25 cursor-not-allowed pointer-events-none;
+}
+
+.woocommerce-product-details__short-description {
+  @apply text-sm my-4;
+}
+
+.product_meta {
+  @apply text-xs;
+}
+
+/**
+ * VARIATION TYPE
+ */
+
+.woocommerce-variation-add-to-cart .quantity,
+.woocommerce .product form.cart .quantity,
+.woocommerce-variation-description {
+  @apply hidden;
+}
+
+.single_variation_wrap {
+  @apply grid gap-y-4 my-4;
+}
+
+.woocommerce-variation {
+  @apply grid gap-y-4;
+}
+
+.woo-variation-swatches.wvs-show-label .variations {
+  @apply my-4 w-full;
+}
+
+.woo-variation-swatches.wvs-show-label .variations th {
+  @apply text-left text-xs font-normal;
+}
+
+.woo-variation-swatches .variable-items-wrapper {
+  @apply mb-4;
+}
+
+.woo-variation-swatches .variable-items-wrapper .variable-item:not(.radio-variable-item).button-variable-item {
+  @apply w-fit rounded-3xl;
+}
+
+.woocommerce .product form.cart .reset_variations {
+  @apply underline text-sm;
+}
+
+.woo-variation-swatches .wvs-style-rounded.variable-items-wrapper .variable-item:not(.radio-variable-item) .variable-item-span {
+  @apply px-4;
+}
