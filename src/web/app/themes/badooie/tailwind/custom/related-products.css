@@ -1,0 +1,38 @@
+/**
+ * RELATED PRODUCTS
+ */
+.related.products {
+  @apply border-t border-gray-200 pt-10;
+}
+
+.related.products h2 {
+  @apply mb-8 text-xl;
+}
+
+.related.products ul.products {
+  @apply grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8;
+}
+
+.related.products li.product {
+  @apply grid grid-rows-1 gap-y-4 relative;
+}
+
+.related.products .onsale {
+  @apply absolute top-2 left-2;
+}
+
+.related.products .woocommerce-loop-product__link {
+  @apply grid grid-rows-1 gap-y-1;
+}
+
+.related.products .woocommerce-loop-product__title {
+  @apply mb-0 text-sm;
+}
+
+.related.products .woocommerce-loop-product__link img {
+  @apply w-full;
+}
+
+.related.products .price {
+  @apply text-base font-normal;
+}

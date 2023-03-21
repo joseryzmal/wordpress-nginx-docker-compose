@@ -10,6 +10,10 @@
   @apply border border-red-600 border-dashed;
 }
 
+.content-wrapper {
+  @apply flex flex-col max-w-6xl mx-auto p-4 md:p-6 lg:p-8;
+}
+
 h1.entry-title {
   @apply text-4xl mb-4 font-normal;
 }
@@ -31,15 +35,15 @@ h1.entry-title {
   @apply text-xl;
 }
 
-.woocommerce .product span.price {
+.product span.price {
   @apply font-semibold;
 }
 
-.woocommerce .product .price del {
+.product .price del {
   @apply opacity-50 text-base font-normal;
 }
 
-.woocommerce .product .price ins {
+.product .price ins {
   @apply no-underline;
 }
 
@@ -76,11 +80,11 @@ h1.entry-title {
   @apply text-center;
 }
 
-.woocommerce .product form.cart .button {
+.product form.cart .button {
   @apply block w-full rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600;
 }
 
-.woocommerce .product form.cart .button.disabled {
+.product form.cart .button.disabled {
   @apply opacity-25 cursor-not-allowed pointer-events-none;
 }
 
@@ -129,7 +133,7 @@ h1.entry-title {
  */
 
 .woocommerce-variation-add-to-cart .quantity,
-.woocommerce .product form.cart .quantity,
+.product form.cart .quantity,
 .woocommerce-variation-description {
   @apply hidden;
 }
@@ -158,7 +162,7 @@ h1.entry-title {
   @apply w-fit rounded-3xl;
 }
 
-.woocommerce .product form.cart .reset_variations {
+.product form.cart .reset_variations {
   @apply underline text-sm;
 }
 

@@ -20,7 +20,7 @@ function _s_woocommerce_setup() {
 	add_theme_support(
 		'woocommerce',
 		array(
-			'thumbnail_image_width' => 150,
+			'thumbnail_image_width' => 250,
 			'single_image_width'    => 640,
 			'product_grid'          => array(
 				'default_rows'    => 3,
@@ -314,7 +314,7 @@ if ( ! function_exists( 'drope_radio_variation_attribute_options' ) ) {
 	}
 }
 
-# sale flash
+# move sale flash
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 add_action( 'woocommerce_after_product_price', 'woocommerce_show_product_sale_flash', 15 );
 
@@ -339,3 +339,6 @@ function badooie_remove_reviews_tab( $tabs ) {
 # remove tab panel header/title
 add_filter('woocommerce_product_description_heading', '__return_null');
 add_filter('woocommerce_product_additional_information_heading', '__return_null');
+
+# remove add to cart on related products section
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
