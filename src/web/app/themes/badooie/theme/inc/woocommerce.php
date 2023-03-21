@@ -162,6 +162,7 @@ if ( ! function_exists( '_s_woocommerce_cart_link_fragment' ) ) {
 	 * @return array Fragments to refresh via AJAX.
 	 */
 	function _s_woocommerce_cart_link_fragment( $fragments ) {
+    global $woocommerce;
 		ob_start();
 		_s_woocommerce_cart_link();
 		$fragments['a.cart-contents'] = ob_get_clean();
@@ -181,16 +182,15 @@ if ( ! function_exists( '_s_woocommerce_cart_link' ) ) {
 	 */
 	function _s_woocommerce_cart_link() {
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', '_s' ); ?>">
-			<?php
-			$item_count_text = sprintf(
-				/* translators: number of items in the mini cart. */
-				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), '_s' ),
-				WC()->cart->get_cart_contents_count()
-			);
-			?>
-			<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo esc_html( $item_count_text ); ?></span>
-		</a>
+    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart-contents group -m-2 flex items-center p-2">
+      <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+      </svg>
+      <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+        <?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?>
+      </span>
+      <span class="sr-only">items in cart, view bag</span>
+    </a>
 		<?php
 	}
 }
@@ -212,7 +212,7 @@ if ( ! function_exists( '_s_woocommerce_header_cart' ) ) {
 			<li class="<?php echo esc_attr( $class ); ?>">
 				<?php _s_woocommerce_cart_link(); ?>
 			</li>
-			<li>
+			<li class="hidden">
 				<?php
 				$instance = array(
 					'title' => '',
@@ -342,3 +342,6 @@ add_filter('woocommerce_product_additional_information_heading', '__return_null'
 
 # remove add to cart on related products section
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+
+# REMOVE SIDEBAR
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );

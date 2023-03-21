@@ -1,0 +1,15 @@
+#primary-menu {
+  @apply h-full;
+}
+
+#primary-menu ul {
+  @apply flex h-full items-center space-x-8;
+}
+
+/* #primary-menu li {
+  @apply flex items-center;
+} */
+
+#primary-menu a {
+  @apply w-full h-full text-sm font-medium text-gray-700 hover:text-gray-800;
+}
